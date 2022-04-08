@@ -8,6 +8,7 @@
 - <a href="#feature-selection-dimensionality-reduction" style="color: #d4d4d4;">Feature Selection and Dimensionality Reduction</a>
 - <a href="#splitting" style="color: #d4d4d4;">Splitting</a>
 - <a href="#classification-regression" style="color: #d4d4d4;">Classification and Regression Algorithms</a>
+- <a href="#compare-metrics-output" style="color: #d4d4d4;">Compare Metrics and Output</a>
 - <a href="#hyperparameter-tuning" style="color: #d4d4d4;">Hyperparameter Tuning</a>
 
 <br>
@@ -71,7 +72,7 @@ Feature engineering helps: Polynomial features, categorical features, and numeri
 
 The fancy word for aligning/calibrating data for our model(s) is "feature scaling."
 
-! **Split your data into a train and test set _before_ any feature scaling** !
+!**Split your data into a train and test set _before_ any feature scaling**!
 
 There are two primary ways of feature scaling: Standardization and Normalization.
 
@@ -183,9 +184,6 @@ There are four primary ways to split the data: Train-Test Split, Stratified Trai
   - Divides a limited dataset into non-overlapping folds to be tested.
   - k=10 was found to provide good trade-off between low computational cost and low bias in an estimate of model performance.
 
-<br>
-<br>
-
 ### **<a id="classification-regression"></a>Classification and Regression Algorithms**
 
 - Classifcation predicts the class or category for a given observation. For example, an email of text can be classified as belonging to one of two classes: “spam“ and “not spam“.
@@ -207,7 +205,7 @@ We'll discuss seven classifcation algorithms: K-Nearest Neighbors (KNN), Support
     - Has high prediction cost for large datasets.
     - Doesn't work well with categorical features since it is difficult to find the distance between dimensions with categorical features.
 
-- [Support Vector Machines (SVM)](https://static.javatpoint.com/tutorial/machine-learning/images/support-vector-machine-algorithm.png): Finds the most optimal decision boundary, which is the one that has the maximum margin from the nearest points of all the classes.
+- [Support Vector Machine Classification (SVM)](https://static.javatpoint.com/tutorial/machine-learning/images/support-vector-machine-algorithm.png): Finds the most optimal decision boundary, which is the one that has the maximum margin from the nearest points of all the classes.
   - Pros:
     - Works well with a clear margin of separation.
     - Effective in high dimensional spaces.
@@ -283,3 +281,87 @@ Helps determine the probability of an event occurring based on prior knowledge o
     - Overfitting is possible if parameters aren't tuned correctly.
 
 **Regression Algorithms**
+
+We'll discuss seven regression algorithms: Linear Regression, Stochastic Gradient Descent (SGD), Ridge Regression, Elastic Net, Bayesian Ridge, Support Vector Machine (SVM), and eXtreme Gradient Boosting (XGBoost).
+
+- [Linear Regression](https://miro.medium.com/max/1400/1*Cw5ZSYDkIFpmhBwr-hN84A.png): Gives us the most optimal value for the intercept by fitting multiple lines on the data points and returning the line that results in the least error.
+  - Pros:
+    - Simple to implement and easier to interpret the output coefficients.
+    - Best to use if you know the relationship between the independent and dependent variable is linear.
+    - Susceptible to over-fitting but can be avoided by using dimensionality reduction techniques.
+  - Cons:
+    - Outliers can have huge effects on the regression.
+    - Assumes a linear relationship between dependent and independent variables and independence between attributes.
+
+- [Stochastic Gradient Descent (SGD)](https://miro.medium.com/max/1005/1*_6TVU8yGpXNYDkkpOfnJ6Q.png): Is a simple yet efficient optimization algorithm used to find the values of parameters/coefficients of functions that minimize a cost function. It supports various loss functions and penalties to fit linear regression models.
+  - Used for classification and regression algorithms.
+  - There are many types of Gradient Descent. There are also: Batch Gradient Descent and Mini-Batch Gradient Descent
+  - Pros:
+    - One observation is processed by the network, so it's easier to fit into memory.
+    - On a large dataset, it's likely to reach near the minimum faster than other SGDs.
+    - Frequent updates create plenty of oscillations which can be helpful for getting out of local minimums.
+  - Cons:
+    - Can veer off in the wrong direction due to frequent updates.
+    - Lose the benefits of vectorization since we process one observation per time.
+    - Frequent updates are computationally expensive.
+- [Ridge Regression](https://i.stack.imgur.com/s71QZ.png): Used to analyze multiple regression data that's multicollinear.
+  - Multicollinearity occurs when there are high correlations between more than two predicted variables.
+  - Multicollinearity can cause inaccurate results and p-values, making the model more redundant and reducing its efficiency and predictability.
+  - Pros:
+    - Protects model from overfitting.
+    - Performs well when there's large, multivariate data with the number of predictors larger than the number of observations.
+    - Very effective when it comes to improving the least-squares estimate where there's multicollinearity.
+  - Cons:
+    - Not capable of performing feature selection.
+    - Shrinks coefficients towards zero.
+    - Trades variance for bias.
+- [Elastic Net](https://cdn.corporatefinanceinstitute.com/assets/elastic-net1-1024x642.png): An extension of linear regression that adds regularization penalties to the loss function during training.
+  - Assumes a linear relationship between input variables and the target variable.
+  - Elastic Net Regression = Lasso Regression + Ridge Regression.
+  - Pros:
+    - Better in handling collinearity and handling bias.
+    - Performs well with complexity.
+  - Cons:
+    - Computational cost. Need to cross-validate the relative weight of L1 vs. L2 penalty.
+    - Flexibility of the estimator. With greater flexibility comes increased probability of overfitting.
+- [Bayesian Ridge](https://scikit-learn.org/stable/_images/sphx_glr_plot_bayesian_ridge_001.png): Applies Ridge regression and its coefficients under the Gaussian distribution.
+  - Compared to the OLS (ordinary least squares), the coefficient weights are slightly shifted toward zeros.
+  - Can be useful when there's insufficient data in the dataset or the data is poorly distributed.
+  - The output and the model parameters are also assumed to come from a Gaussian distribution.
+  - Pros:
+    - Effective when the size of the dataset is small.
+    - Particularly well-suited for real-time data based learning.
+  - Cons:
+    - Inference of the model can be time-consuming.
+    - Is not worth doing if there's a large amount of data available in our dataset.
+- [Support Vector Machine Regression (SVR)](https://static.javatpoint.com/tutorial/machine-learning/images/support-vector-machine-algorithm.png): Gives flexibility to define how much error is acceptable in our model and will find an appropriate line (or hyperplane in higher dimensions) to fit the data.
+  - The objective of SVR is to minimize the coefficients (specifically l2-norm of the coefficient vector).
+  - SVR pros and cons are similar to SVM.
+  - Pros:
+    - Works well with a clear margin of separation.
+    - Effective in high dimensional spaces.
+    - Effective in cases where the number of dimensions is greater than the number of samples.
+    - Uses a subset of training points in the decision function, so it's memory efficient.
+  - Cons:
+    - Doesn’t perform well on large datasets because the required training time is higher.
+    - Doesn’t perform well when data has a lot of noise i.e. target classes are overlapping.
+- [XGBoost](https://www.nvidia.com/content/dam/en-zz/Solutions/glossary/data-science/xgboost/img-3.png): XGBoost is an efficient implementation of gradient boosting that can be used for regression predictive modeling.
+  - Gradient boosting is a class of ensemble machine learning algorithms used for classification and regression problems.
+  - Ensembles are constructed from decision tree models. Trees are added one at a time to the ensemble and fit to correct the prediction errors made by prior models.
+  - Models are fit using any arbitrary differentiable loss function and gradient descent optimization algorithm.
+  - Use XGBoost for execution speed and model performance.
+  - Dominates structured or tabular datasets.
+  - XGBoost Regression pros and cons are similar to XGBoost Classification.
+  - Pros:
+    - Computationally efficient and often has better model performance than other algorithms.
+    - Doesn't require as much feature engineering.
+    - Less prone to overfitting.
+  - Cons:
+    - Overfitting is possible if parameters aren't tuned correctly.
+
+### **<a id="compare-metrics-output"></a>Compare Metrics and Output**
+
+**Classification Algorithms**
+
+**Regression Algorithms**
+  
