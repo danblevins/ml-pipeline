@@ -72,7 +72,7 @@ Feature engineering helps: Polynomial features, categorical features, and numeri
 
 The fancy word for aligning/calibrating data for our model(s) is "feature scaling."
 
-!**Split your data into a train and test set _before_ any feature scaling**!
+! **Split your data into a train and test set _before_ any feature scaling** !
 
 There are two primary ways of feature scaling: Standardization and Normalization.
 
@@ -102,7 +102,6 @@ There are two primary ways of feature scaling: Standardization and Normalization
     - It may change the shape of the initial distribution.
     - It is sensitive to extreme outliers (Except for Robust Scaler).
 
-<br>
 <br>
 
 ### **<a id="feature-selection-dimensionality-reduction"></a>Feature Selection and Dimensionality Reduction**
@@ -155,7 +154,6 @@ There are six primary ways to do dimensionality reduction: Principal Component A
 - Modified Locally Linear Embedding (MLLE)
   - This is an extension of LLE that creates multiple weight vectors for each neighborhood.
 
-<br>
 <br>
 
 ### **<a id="splitting"></a>Splitting**
@@ -359,9 +357,46 @@ We'll discuss seven regression algorithms: Linear Regression, Stochastic Gradien
   - Cons:
     - Overfitting is possible if parameters aren't tuned correctly.
 
+<br>
+
 ### **<a id="compare-metrics-output"></a>Compare Metrics and Output**
 
-**Classification Algorithms**
+**Classification Metrics**
 
-**Regression Algorithms**
+We'll discuss four [classification metrics](https://scikit-learn.org/stable/modules/classes.html#classification-metrics): Accuracy, confusion matrix (including Precision-recall and F1 Score), AUC-ROC, and log-loss.
+
+- Accuracy: Measures how often the classifier predicts correctly.
+  - Useful when the target class is well balanced but is not a good choice for the unbalanced classes.
+  - Accuracy = number of correct predictions / total number of predictions
+- Confusion Matrix: A table that's used to describe the performance of a classification model on the test data.
+  - True Positives, False Positives (Type 1 Error), False Negatives (Type 2 Error), True Negatives.
+- Precision: Explains how many of the correctly predicted cases actually were positive.
+  - Useful when False Positives are higher concern than False Negatives.
+  - Precision = number of true positives / number of predicted positives
+- Recall: Explains how many of the actual positive cases we predicted correctly.
+  - Useful when False Negatives are higher concern than False Positives.
+  - Recall = number of true positives / total number of actual positives
+- F1 Score: Gives a combined Precision and Recall score. Maximum when Precision is equal to Recall.
+  - Useful when False Positives and False Negatives are equally bad, adding more data doesn't help the results, and/or true negatives are high.
+- AUC-ROC
+  - Receiver Operator Characteristic (ROC) is a probability curve that plots the True Positive Rate against the False Positive Rate at various threshold values to separate the signal from the noise.
+  - The Area Under the Curve (AUC) is the measure of the classifier to distinguish classes.
+    - When AUC = 1, the classifier perfectly distinguishs between all Positive and Negative classes.
+    - When AUC = 0, the classifier predicts all Negatives as Positives and vice versa.
+    - When AUC = 0.5, the classifier can't distinguish between the Positive and Negative classes.
+- Log Loss
+
+**Regression Metrics**
+
+We'll discuss three [regression metrics](https://scikit-learn.org/stable/modules/classes.html#regression-metrics): Mean Squared Error (MSE), Root Mean Squared Error (RMSE), and Mean Absolute Error (MAE).
+
+- MSE: Calculated as the mean or average of the squared differences between predicted and expected target values in a dataset.
+  - Punishes models with larger errors.
+  - A perfect mean squared error value is 0.0, which means that all predictions matched the expected values.
+  - First, establish a baseline MSE for your dataset using a simple predictive model (such as predicting the mean target value from the training dataset). A model that achieves a better MSE than this is a better model.
+- RMSE: An extension of MSE where the square root of the error is calculated too.
+  - Consider using MSE to train a regression predictive model, and to use RMSE to evaluate and report its performance.
+  - Similar to MSE, a perfect RMSE value is 0.0.
+  - Similar to MSE, it's important to establish a RMSE baseline first.
+- MAE: Similar to MSE and RMSE, execpt it does not give more or less weight to different types of errors. Instead, the scores increase linearly with increases in error.
   
