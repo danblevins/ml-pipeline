@@ -182,6 +182,8 @@ There are four primary ways to split the data: Train-Test Split, Stratified Trai
   - Divides a limited dataset into non-overlapping folds to be tested.
   - k=10 was found to provide good trade-off between low computational cost and low bias in an estimate of model performance.
 
+<br>
+
 ### **<a id="classification-regression"></a>Classification and Regression Algorithms**
 
 - Classifcation predicts the class or category for a given observation. For example, an email of text can be classified as belonging to one of two classes: “spam“ and “not spam“.
@@ -359,7 +361,23 @@ We'll discuss seven regression algorithms: Linear Regression, Stochastic Gradien
 
 <br>
 
-### **<a id="compare-metrics-output"></a>Compare Metrics and Output**
+### **<a id="compare-metrics-output"></a>Compare Metrics, Output, and Multicollinearity**
+
+**Multicollinearity and Variance Inflation Factor**
+
+- Multicollinearity is when one independent variable in a regression model is linearly correlated with another independent variable.
+- This is bad because:
+  - Fitted regression coefficients could change significantly if one of those variables changes.
+  - It will be hard to detect statistical significance.
+  - Makes prediction less accurate.
+- To detect multicollinearity, use variance inflation factor (VIF).
+  - VIF measures the ratio between one variance for a given regression coefficient to all other variances.
+  - A VIF of 1 means the tested predictor is not correlated with other predictors.
+  - A higher VIF means:
+    - A predictor is more correlated with other predictors.
+    - The standard error is inflated.
+    - Larger the confidence interval.
+    - Less likely that a coefficient will be statistically significant.
 
 **Classification Metrics**
 
@@ -398,5 +416,18 @@ We'll discuss three [regression metrics](https://scikit-learn.org/stable/modules
   - Consider using MSE to train a regression predictive model, and to use RMSE to evaluate and report its performance.
   - Similar to MSE, a perfect RMSE value is 0.0.
   - Similar to MSE, it's important to establish a RMSE baseline first.
-- MAE: Similar to MSE and RMSE, execpt it does not give more or less weight to different types of errors. Instead, the scores increase linearly with increases in error.
-  
+- MAE: Similar to MSE and RMSE, except it does not give more or less weight to different types of errors. Instead, the scores increase linearly with increases in error.
+
+<br>
+
+### **<a id="hyperparameter-tuning"></a>Hyperparameter Tuning**
+
+Every classification and regression model has many variables/ parameters in its function to improve our results. Hyperparameter tuning helps us automatically test these parameters to find the optimal values that maximize accuracy.
+
+We'll discuss two frequently used hyperparameters: Grid Search and Random Search.
+
+- Grid Search: Examines all combinations of the defined hyperparameters. In other words, we train a model on each possible combination of hyperparameters. The hyperparameters associated with the highest accuracy are chosen.
+  - Grid search tends to be very slow since it examines all possible combinations of hyperparameters.
+
+- Random Search: Set a lower and upper bound on the values (if continuous variable) or the possible values the hyperparameter can take on (if categorical variable) for each hyperparameter. A random search is then applied a total of N times, training a model on each set of hyperparameters.
+  - Random search is much faster and typically obtains just as high accuracy as a grid search.
