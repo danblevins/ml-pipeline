@@ -8,7 +8,7 @@
 - <a href="#feature-selection-dimensionality-reduction" style="color: #d4d4d4;">Feature Selection and Dimensionality Reduction</a>
 - <a href="#splitting" style="color: #d4d4d4;">Splitting</a>
 - <a href="#classification-regression" style="color: #d4d4d4;">Classification and Regression Algorithms</a>
-- <a href="#compare-metrics-output" style="color: #d4d4d4;">Compare Metrics and Output</a>
+- <a href="#compare-metrics-output" style="color: #d4d4d4;">Compare Metrics, Output, and Multicollinearity</a>
 - <a href="#hyperparameter-tuning" style="color: #d4d4d4;">Hyperparameter Tuning</a>
 
 <br>
