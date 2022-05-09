@@ -1,6 +1,8 @@
 # The Machine Learning Pipeline in [Scikit-learn](https://scikit-learn.org/stable/)
 
 <br>
+<p align="center"><img src="image.JPG" height="750"></p>
+<br>
 
 ## Table of Contents
 
